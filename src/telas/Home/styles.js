@@ -32,6 +32,7 @@ export const ContainerLista = styled.View`
 export const Imagens = styled.Image`
   height: 100px;
   width: 30%;
+  border-radius: 30px;
 `;
 
 export const ContainerTextos = styled.View`
@@ -60,7 +61,7 @@ export const BotaoAdicionar = styled.TouchableOpacity`
   width: 30px;
   height: 30px;
   border-radius: 50px;
-  background-color: #F08080;
+  background-color: #f08080;
   justify-content: center;
   align-items: center;
 `;
@@ -114,4 +115,10 @@ export const ContainerBotao = styled.View`
 
 export const ContainerBotaoModal = styled.View`
   flex-direction: row;
+`;
+
+export const BotaoCadastrarSkill = styled.TouchableOpacity`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;

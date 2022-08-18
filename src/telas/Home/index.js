@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
   BotaoAdicionar,
+  BotaoCadastrarSkill,
   BotaoDeletarVermelho,
   BotaoOk,
   BotaoSair,
@@ -22,7 +23,7 @@ import Gradiente from "./../../components/Gradiente/index";
 import { AntDesign, Feather, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import api from "./../../service/api";
-import { FlatList, Text, Modal } from "react-native";
+import { FlatList, Text, Modal, View } from "react-native";
 import { SeparadorDeItems } from "./../../components/SeparadorDeItems/index";
 import { Picker } from "@react-native-picker/picker";
 
@@ -32,6 +33,9 @@ const Home = () => {
   const navigation = useNavigation();
   const TelaDeLogin = () => {
     navigation.navigate("Login");
+  };
+  const TelaCadastroDeSkills = () => {
+    navigation.navigate("CadastroSkill");
   };
 
   const [skills, setSkills] = useState([]);
@@ -117,18 +121,6 @@ const Home = () => {
 
   const ItemRenderizado = ({ item }) => (
     <>
-      <Picker
-        ref={pickerRef}
-        selectedValue={selecionarSkill}
-        onValueChange={(itemValue) => setSelecionarSkill(itemValue)}
-      >
-        <Picker.Item label="Adicionar Skill: " value="" />
-        <Picker.Item label="Adaptabilidade" value="Adaptabilidade" />
-        <Picker.Item label="Produtividade" value="Produtividade" />
-        <Picker.Item label="Trabalho em equipe" value="Trabalho em equipe" />
-        <Picker.Item label="Inovação" value="Inovação" />
-        <Picker.Item label="Boa comunicação" value="Boa comunicação" />
-      </Picker>
       <Item
         imageUrl={item.imageUrl}
         name={item.name}
@@ -136,6 +128,20 @@ const Home = () => {
         description={item.description}
         id={item.id}
       />
+      <View style={{ height: 30, width: 120, justifyContent: "center" }}>
+        <Picker
+          ref={pickerRef}
+          selectedValue={selecionarSkill}
+          onValueChange={(itemValue) => setSelecionarSkill(itemValue)}
+        >
+          <Picker.Item label="Escolher habilidade " value="" />
+          <Picker.Item label="Adaptabilidade" value="Adaptabilidade" />
+          <Picker.Item label="Produtividade" value="Produtividade" />
+          <Picker.Item label="Trabalho em equipe" value="Trabalho em equipe" />
+          <Picker.Item label="Inovação" value="Inovação" />
+          <Picker.Item label="Boa comunicação" value="Boa comunicação" />
+        </Picker>
+      </View>
     </>
   );
 
@@ -144,6 +150,10 @@ const Home = () => {
       <Container>
         <NavBar />
         <Gradiente posicao="top" />
+        <BotaoCadastrarSkill onPress={TelaCadastroDeSkills}>
+          <Text style={{ color: "white" }}>Cadastrar skills</Text>
+          <Ionicons name="ios-add" size={24} color="white" />
+        </BotaoCadastrarSkill>
         <ContainerBotaoTexto>
           <BotaoSair onPress={TelaDeLogin}>
             <TextoSair>Sair</TextoSair>
